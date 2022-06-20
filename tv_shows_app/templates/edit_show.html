@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex flex-column align-items-center card bg-light m-3">
+    <div class="card-header w-100 row text-center">
+        <div class="col"></div>
+        <h1 class="col-9 ml-1 text-center">Edit Show {{show.id}}</h1>
+        <div class="col mt-3 mb-4 float-right">
+            <a class="text-info" style="text-decoration: underline;" href="/shows">Go
+                back ></a>
+        </div>
+    </div>
+    {% if messages %}
+    <ul class="messages mt-3 w-75 mr-5">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} p-1 pl-4 ">
+            {% if message.tags %}
+            <li class="">{{ message }}</li>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="card-body w-75">
+        <form class="container myform1 mr-3" action="{% url 'update_show' show.id %}" method="post">
+            {% csrf_token %}
+            <div class="mb-2">
+                <input type="hidden" name="show.id" value="{{show.id}}">
+                <label class="col-form-label" for="">Title:</label>
+                <div class="">
+                    <input type="text" class="form-control" name="title" value="{{show.title}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="col-form-label" for="">Network:</label>
+                    <div class="">
+                        <input type="text" class="form-control" value="{{show.network}}" name="nw">
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <label class="col-form-label" for="">Release Date:</label>
+                    <div class="">
+                        <input type="date" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31"
+                            class="form-control" name="date">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="col-form-label" for="">Description:</label>
+                <div class="">
+                    <textarea type="text" class="form-control" value="{{show.desc}}"
+                        name="desc">{{show.desc}}</textarea>
+                </div>
+            </div>
+            <div class="form-row mt-4 d-flex flex-column align-items-center">
+                <input class="btn btn-info w-50" type="submit" name="btn" id="" value="Update">
+            </div>
+            <div class="form-row mt-4 d-flex flex-column align-items-center">
+                <a href="{% url 'view_show' show.id %}" class="text-info text-center w-50" type="submit" name="btn"
+                    id="">Go to Show </a>
+            </div>
+        </form>
+    </div>
+    
+</div>
+{% endblock %}

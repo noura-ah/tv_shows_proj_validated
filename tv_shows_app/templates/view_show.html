@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class=" d-flex flex-column card bg-light">
+    <div class="card-header d-flex justify-content-between bg-info text-light">
+        <h1 class="">TV Show {{show.id}}</h1>
+        <div class="mt-3">
+            <a class="text-light" style="text-decoration: underline;" href="/shows">Go
+                back ></a>
+        </div>
+    </div>
+    <div class="card-body justify-content-center mt-4">
+        <h4>Title: {{show.title}}</h4>
+        <h5>Network: <span style="font-size:18px ;">{{show.network}}</span></h5>
+        <h5>Release Date: <span style="font-size:18px ;">{{show.date}}</span></h5>
+        <div class="d-flex justify-content-space-evenly">
+            <h5 class="mr-1 ">Description: </h5>
+            <p class=""> {{show.desc}}</p>
+        </div>
+        <h6 class="mt-4">Last Update: {{show.updated_at}}</h6>
+        <div class="text-info float-left mt-4"><a class=" btn bg-info text-light  pr-3 pl-3"
+                href="{% url 'edit_show' show.id %}">Edit</a> | <a class=" btn bg-info text-light"
+                href="{% url 'destroy_show' show.id %}">Delete</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

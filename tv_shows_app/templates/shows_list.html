@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% block content %}
+<h1>All Shows</h1>
+<div>
+    <table class="table border">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Network</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light">
+
+            {% for show in shows %}
+            <tr class="">
+                <th scope="row">{{show.id}}</th>
+                <td>{{show.title}}</td>
+                <td>{{show.network}}</td>
+                <td>{{show.date}}</td>
+                <td><a class="text-info" href="{% url 'view_show' show.id %}">Show </a>| <a class="text-info"
+                        href="{% url 'edit_show' show.id %}">Edit</a> | <a class="text-info"
+                        href="{% url 'destroy_show' show.id%}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<button class="btn btn-info mt-4"><a class="text-light" href="shows/new">Add a New Show</a></button>
+
+{% endblock %}
